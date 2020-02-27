@@ -5,6 +5,6 @@
     <div class="col">{{item.title}}</div>
     <div class="col">{{item.description}}</div>
     <div class="col">{{item.status? 'Done': 'Not Done'}}</div>
-    <div class="col"> <button class="btn btn-danger">ลบ</button> </div>
+    <div class="col"> <button class="btn btn-danger" (click)="onDeleteTaskById(item.id)">ลบ</button> </div>
   </div>
 </div>
