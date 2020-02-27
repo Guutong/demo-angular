@@ -1,0 +1,7 @@
+<form [formGroup]="taskForm">
+  <label for="inputTitle">หัวข้อ</label>
+  <input type="text" name="title" id="inputTitle" placeholder="หัวข้อ" formControlName="title"/>
+  <label for="inputDescription">รายละเอียด</label>
+  <input type="text" name="description" id="inputDescription" placeholder="รายละเอียด" formControlName="description"/>
+  <button [disabled]="taskForm.invalid" (click)="onSubmit()">เพิ่ม Task</button>
+</form>

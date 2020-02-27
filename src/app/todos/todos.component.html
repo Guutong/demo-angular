@@ -1,0 +1,7 @@
+<app-add-task></app-add-task>
+<ul *ngFor="let item of todos">
+  <li>{{item.id}}</li>
+  <li>{{item.title}}</li>
+  <li>{{item.description}}</li>
+  <li>{{item.status? 'Done': 'Not Done'}}</li>
+</ul>
