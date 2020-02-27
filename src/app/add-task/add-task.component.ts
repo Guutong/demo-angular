@@ -7,7 +7,7 @@ import { TodosService, Task } from '../todos.service';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.css']
 })
-export class AddTaskComponent implements OnInit {
+export class AddTaskComponent {
 
   taskForm: FormGroup = new FormGroup({
     id: new FormControl(0),
@@ -18,13 +18,10 @@ export class AddTaskComponent implements OnInit {
 
   constructor(public service: TodosService) { }
 
-  ngOnInit() {
-  }
-
   onSubmit() {
     if (this.taskForm.invalid) { return; }
     const task: Task = {
-      id: 1,
+      id: this.service.generateId(),
       title: this.taskForm.controls.title.value,
       description: this.taskForm.controls.description.value,
       status: this.taskForm.controls.status.value,

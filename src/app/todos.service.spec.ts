@@ -48,4 +48,93 @@ describe('TodosService', () => {
     expect(result[0].title).toBe('Meeting');
     expect(result[1].title).toBe('Sleeping');
   });
+
+  it('id should be increase 1 from max id', () => {
+    service.todos = [
+      {
+        id: 1,
+        title: 'Meeting',
+        description: 'learning tdd',
+        status: false
+      },
+      {
+        id: 2,
+        title: 'Sleeping',
+        description: 'i want to sleep',
+        status: false
+      }
+    ];
+
+    const result = service.generateId();
+    expect(result).toBe(3);
+  });
+
+  it('id should be increase 1 from max id', () => {
+    service.todos = [
+      {
+        id: 2,
+        title: 'Meeting',
+        description: 'learning tdd',
+        status: false
+      },
+      {
+        id: 3,
+        title: 'Sleeping',
+        description: 'i want to sleep',
+        status: false
+      }
+    ];
+
+    const result = service.generateId();
+    expect(result).toBe(4);
+  });
+
+  it('id should be increase 1 from max id', () => {
+    service.todos = [];
+    const result = service.generateId();
+    expect(result).toBe(1);
+  });
+
+  it('ควรจะ delete task by id', () => {
+    service.todos = [
+      {
+        id: 2,
+        title: 'Meeting',
+        description: 'learning tdd',
+        status: false
+      },
+      {
+        id: 3,
+        title: 'Sleeping',
+        description: 'i want to sleep',
+        status: false
+      }
+    ];
+
+    service.deleteTaskById(2);
+
+    expect(service.todos.length).toBe(1);
+  });
+
+  it('ควรจะ delete task by id', () => {
+    service.todos = [
+      {
+        id: 2,
+        title: 'Meeting',
+        description: 'learning tdd',
+        status: false
+      },
+      {
+        id: 3,
+        title: 'Sleeping',
+        description: 'i want to sleep',
+        status: false
+      }
+    ];
+
+    service.deleteTaskById(2);
+    service.deleteTaskById(3);
+
+    expect(service.todos.length).toBe(0);
+  });
 });

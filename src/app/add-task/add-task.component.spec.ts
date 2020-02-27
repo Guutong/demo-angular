@@ -5,8 +5,13 @@ import { FormGroup } from '@angular/forms';
 import { TodosService } from '../todos.service';
 
 describe('AddTaskComponent', () => {
-  const service = new TodosService();
-  let component: AddTaskComponent = new AddTaskComponent(service);
+  let service: TodosService;
+  let component: AddTaskComponent;
+
+  beforeEach(() => {
+    service = new TodosService();
+    component = new AddTaskComponent(service);
+  })
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -57,5 +62,15 @@ describe('AddTaskComponent', () => {
     expect(component.taskForm.controls.title.value).toBe(null);
     expect(component.service.todos.length).toBe(1);
     expect(component.service.todos[0].title).toBe('ผนง');
+  });
+
+  it('should be not increase task in service when call onSubmit', () => {
+    expect(component.service.todos.length).toBe(0);
+
+    component.taskForm.reset();
+    component.onSubmit();
+    console.log(component.service.todos);
+
+    expect(component.service.todos.length).toBe(0);
   });
 });

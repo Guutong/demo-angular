@@ -7,6 +7,7 @@ import { TodosService, Task } from '../todos.service';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
+
   todos: Task[] = [];
 
   constructor(public service: TodosService) {
@@ -16,5 +17,8 @@ export class TodosComponent implements OnInit {
     this.todos = this.service.getAllTask();
   }
 
-
+  onDeleteTaskById(id: number) {
+    this.service.deleteTaskById(id);
+    this.todos = this.service.getAllTask();
+  }
 }

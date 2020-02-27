@@ -10,8 +10,6 @@ export interface Task {
   providedIn: 'root'
 })
 export class TodosService {
-
-
   todos: Task[] = [];
 
   constructor() { }
@@ -22,5 +20,15 @@ export class TodosService {
 
   getAllTask(): Task[] {
     return this.todos;
+  }
+
+  generateId() {
+    if (this.todos.length === 0) { return 1; }
+    const id = Math.max(...this.todos.map(t => t.id));
+    return id + 1;
+  }
+
+  deleteTaskById(id: number) {
+    this.todos = this.todos.filter((t) => t.id !== id);
   }
 }
